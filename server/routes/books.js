@@ -20,7 +20,8 @@ router.put("/search", async(req, res, err) => {
         })
         const filteredBooks2 = await filteredBooks.filter(item => item !== undefined)
         res.json(filteredBooks2)
-    } catch {
+    } 
+    catch {
         res.status(400).json('cannot get the book')
     }
 })
