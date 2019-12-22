@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require('body-parser')
-const booksRouter = require("./routes/books");
+const booksRouter = require("./controllers/books")
 const server = express();
 
 // interpret JSON body of requests

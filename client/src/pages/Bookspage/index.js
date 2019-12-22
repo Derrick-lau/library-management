@@ -12,6 +12,7 @@ const Bookspage = ({history}) => {
   const [searchBook, setSearchBook] = useState({title: null, authors: null})
 
   const fetchBooks = () => {
+    console.log(searchBook)
     axios({
       url: 'http://localhost:3000/books/search',
       method: 'put',
@@ -35,6 +36,7 @@ const Bookspage = ({history}) => {
   })
 
   return (
+    
     
     <main>  
     { history.location.pathname === "/books/add" ?
