@@ -4,41 +4,42 @@ import { Table, Button,} from 'react-bootstrap';
 import Label from '../../components/Input';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import {MapBooks} from '../../components/mapTable'
 
 
 const Bookspage = ({history}) => {
-  
-  const [books, setBooks] = useState([{title: null, isbn: null, authors: null}])
-  const [searchBook, setSearchBook] = useState({title: null, authors: null})
 
-  const fetchBooks = () => {
-    console.log(searchBook)
-    axios({
+  //books that got from server
+  const [fetchedbooks, setFetchedBooks] = useState([{id: null, title: null, isbn: null, authors: null}])
+
+  //books that will get from server
+  const [fetchBook, setfetchBook] = useState({title: null, authors: null})
+
+  //search books' data on server
+  const getBooks = async(err) => {
+    try {  
+      const res = await axios({
       url: 'http://localhost:3000/books/search',
-      method: 'put',
-      data:{title: searchBook.title, authors: searchBook.authors}
+      method: 'post',
+      data:{title: fetchBook.title, authors: fetchBook.authors}
     })
-    .then(book => setBooks(book.data))
-    .catch(err => console.log(err))
+      if(res.status===200 && res.data.length>=1 && fetchBook.title !==''){
+        setFetchedBooks(res.data)
+      } else {
+        setFetchedBooks([{id:'Not found'}])
+      }
+    } catch {console.log(err)}
   }
 
-  const search = e => setSearchBook({title: e.target.value, authors: e.target.value})
+  // add books that got from server to the table
+  const mappedBooks = fetchedbooks.map(({...args}, i) => <MapBooks {...args} />)
 
-  const LoadedBooks = books.map((LoadedBooks, i) => {
-    return(
-        <tr key={i}>
-          <th scope="row">{LoadedBooks.id}</th>
-          <td>{LoadedBooks.title}</td>
-          <td>{LoadedBooks.isbn}</td>
-          <td>{LoadedBooks.authors}</td>
-        </tr>
-    )
-  })
+  // delete toggle
 
   return (
     
-    
-    <main>  
+    // page of 'Add Book'
+    <main> 
     { history.location.pathname === "/books/add" ?
       <div className="BlockForForm BlockForAdd" >
         <span>Add a New Book</span>
@@ -53,25 +54,21 @@ const Bookspage = ({history}) => {
           </form>
       </div>
     : 
+    // Page of 'Search Book'
       <>
       <Link to='/books/add'><Button size="sm">Add Book</Button></Link>
       <Button variant="danger" size="sm" onChange={()=>{}}>Detele Book</Button>
       <div className ="serachFileld">
-        <Label name='title/author' input ={search} type='text' placeholder="Title or Author" required/>
-        <Button variant="secondary"  onClick={fetchBooks} size="sm" required>
+        <Label name='title/author' type='text' placeholder="Title or Author" required input={e => setfetchBook({title: e.target.value, authors: e.target.value})}/>
+        <Button variant="secondary"  onClick={getBooks} size="sm" required>
           Search
         </Button>
         <Table responsive>
           <thead>
-            <tr>
-              <th>#</th>
-              <th>Title</th>
-              <th>ISBN</th>
-              <th>Authors</th>
-            </tr>
+            <tr><th>#</th><th>Title</th><th>ISBN</th><th>Authors</th></tr>
           </thead>
           <tbody>
-            {LoadedBooks}
+            {mappedBooks}
           </tbody>
         </Table>
       </div>

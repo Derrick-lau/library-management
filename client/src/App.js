@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import { BrowserRouter as Router, Switch, Route,  } from 'react-router-dom';
+import { BrowserRouter as Switch, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
 import Header from './components/Header';
@@ -14,7 +14,6 @@ const App = () => {
   const [isSignedIn, setIsSignedIn] = useState(true)
 
   return (
-    <Router>
       <Switch>
         <Route exact path="/" render={(props) => <SignIn {...props} setIsSignedIn={setIsSignedIn} />}/>
         { isSignedIn ===true?
@@ -26,7 +25,6 @@ const App = () => {
         : null
         }
       </Switch>
-    </Router>
   );
 }
 

@@ -3,7 +3,7 @@ const router = express.Router();
 const knex = require("../data");
 const db = knex.knex;
 
-router.put("/search", async(req, res) => {
+router.post("/search", async(req, res) => {
 
     try {
         const {title, authors} = req.body

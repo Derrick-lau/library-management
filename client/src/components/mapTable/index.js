@@ -1,19 +1,13 @@
-import React from 'react';
+import React  from 'react';
 
 
-const MapTable = books.map((mapItem) => {
-    return(
-        <Fragment key={mapItem.id}>
-        <tr>
-            <th scope="row">{mapItem.id}</th>
-            <td>{mapItem.title}</td>
-            <td >{mapItem.isbn}</td>
-            <td >{mapItem.authors}</td>
-            <td ><Button variant="danger" size="sm" onChange={()=>{}}>Detele</Button></td>
-        </tr>
-        </Fragment>
-    )
-})
+const MapBooks = ({id, title, isbn, authors}, i) => (
+    <tr key={i}>
+        <th scope="row">{id}</th>
+        <td>{title}</td>
+        <td >{isbn}</td>
+        <td >{authors}</td>
+    </tr>
+)
 
-
-export default MapTable;
+export {MapBooks};
