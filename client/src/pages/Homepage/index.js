@@ -8,7 +8,7 @@ const Homepage = () => {
       { name: 'Users', id: 2, url: 'users'},
       { name: 'Loans', id: 3, url: 'loans'},
       { name: 'Logs', id: 4, url: 'logs'}
-    ])
+    ]);
 
     return (
       <main>
