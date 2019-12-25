@@ -4,9 +4,8 @@
     "description": "Server for Coursework 2 for CMT112",
     "main": "server.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "start nodemon"
-    },
+        "start": "nodemon server.js"
+      },
     "repository": {
         "type": "git",
         "url": "git@gitlab.cs.cf.ac.uk:scm2mjc/cmt112-coursework2.git"

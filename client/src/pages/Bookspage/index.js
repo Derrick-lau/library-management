@@ -1,6 +1,6 @@
 import React from 'react';
-import SearchBook from './SearchBook';
-import AddBook from './AddBook';
+import SearchBook from '../../components/SearchBookSector';
+import AddBook from '../../components/AddBookSector';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ const Bookspage = ({history}) => {
     :
       <>
       <Link to='/books/add'><Button size="sm">Add Book</Button></Link>
-      <Button variant="danger" size="sm" onChange={()=>{}}>Detele Book</Button> 
+      <Button variant="danger" size="sm" onClick={()=>{}}>Detele Book</Button> 
       <SearchBook/>
       </>  
     }

@@ -1,15 +1,15 @@
 import React from 'react';
 import { Button} from 'react-bootstrap';
-import Label from '../../../components/Input';
+import Input from '../Styled-Input';
 import { Link } from 'react-router-dom';
 
 const AddBook = () => (
   <div className="BlockForForm BlockForAdd" >
     <span>Add a New Book</span>
       <form>
-        <Label name='title/author' placeholder ='Title'></Label>
-        <Label name='title/author' placeholder ='IBSN'></Label> 
-        <Label name='title/author' placeholder ='Author'></Label>
+        <Input name='title' type='text' placeholder ='Title'></Input>
+        <Input name='isbn' type='text' placeholder ='IBSN'></Input> 
+        <Input name='author' type='text' placeholder ='Author'></Input>
         <div className ='ButtonBlock'>
           <Link to='/books'><Button>Back</Button></Link>   
           <Button>Save</Button>

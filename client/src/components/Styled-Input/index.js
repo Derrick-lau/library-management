@@ -1,10 +1,9 @@
 import React from 'react';
 import './index.scss';
 
-const Input = ({ input, label, ...args }) => (
+const Input = ({ ...args }) => (
     <label>
-      {label}
-      <input onChange={input} {...args} />
+      <input {...args} />
     </label>
   );
   
