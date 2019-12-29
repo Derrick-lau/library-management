@@ -39,9 +39,8 @@ function addData() {
     });
 
     // wait for all the objects to save and then instantiate relationships.
-    Promise.all([book1, book2, book3, author1, author2, author3, user1, loan1]).then(function(
-        results
-    ) {
+    Promise.all([book1, book2, book3, author1, author2, author3, user1, loan1])
+        .then(results => {
         b1 = results[0];
         b2 = results[1];
         b3 = results[2];
