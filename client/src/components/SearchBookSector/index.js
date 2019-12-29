@@ -7,21 +7,21 @@ import SearchRequest from '../SearchRequest';
 const SearchBook = () => {
 
   //books that got from server
-  const [fetchedbooks, setFetchedBooks] = useState([{id: null, title: null, isbn: null, authors: null}]);
+  const [fetchedbooks, setFetchedBooks] = useState([{id: '', title: '', isbn: '', authors: ''}]);
 
   //books that will get from server
-  const [BooktoRequest, setBooktoRequest] = useState({title: null, authors: null});
+  const [BooktoRequest, setBooktoRequest] = useState({title: '', authors: ''});
 
   const HandleSearch = e => setBooktoRequest({title: e.target.value, authors: e.target.value})
 
   // Fetch Books from server
   const SearchBook = () => {
-    const searchBook = SearchRequest('http://localhost:3000/books/search', {title: BooktoRequest.title, authors: BooktoRequest.authors}, setFetchedBooks, BooktoRequest.title )
+    SearchRequest('http://localhost:5000/books/search', {title: BooktoRequest.title, authors: BooktoRequest.authors}, setFetchedBooks)
   }
 
-  const mappedBooks = fetchedbooks.map(({id, title, isbn, authors},i) =>     
+  const mappedBooks = fetchedbooks.map(({id, title, isbn, Authors},i) =>     
     <tr key={i}> 
-      <th scope="row">{id}</th><td>{title}</td><td>{isbn}</td><td>{authors}</td>
+      <th scope="row">{id}</th><td>{title}</td><td>{isbn}</td><td>{Authors}</td>
     </tr>);
                                                   
   return (

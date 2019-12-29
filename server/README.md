@@ -28,11 +28,11 @@ Start the server with:
 node server.js
 ```
 
-This will start the server running on `127.0.0.1` port `3000`.
+This will start the server running on port `5000`.
 
 ## Check everything is working correctly
 
-To check the database and server are operating correctly you can open `http://127.0.0.1:3000/authors` in a Web Browser. This should return a JSON representation of all the Authors stored in the database.
+To check the database and server are operating correctly you can open `http://127.0.0.1:5000/books` in a Web Browser. This should return a JSON representation of all the Authors stored in the database.
 
 ## Making requests
 
