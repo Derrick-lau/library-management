@@ -1,4 +1,3 @@
-const createError = require("http-errors");
 const express = require("express");
 const cors = require("cors");
 const db = require("./model/data");
@@ -7,7 +6,6 @@ const db = require("./model/data");
 const booksRouter = require("./routes/books");
 const usersRouter = require("./routes/users");
 const loansRouter = require("./routes/loans");
-const searchRouter = require("./routes/search");
 
 const app = express();
 
@@ -26,10 +24,9 @@ app.options("*", cors());
 app.use("/books", booksRouter);
 app.use("/users", usersRouter);
 app.use("/loans", loansRouter);
-app.use("/search", searchRouter);
 
 // handle errors last
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
     res.status = err.status || 500;
     res.send(err);
 });

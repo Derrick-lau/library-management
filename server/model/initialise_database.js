@@ -1,42 +1,48 @@
 
 const Sequelize = require("sequelize");
-
+const bcrypt = require('bcrypt');
 const db = require("./data");
 
 // Add some dummy data to the database - in practice this should be in a different file
 function addData() {
-    let book1 = db.Book.create({
+    const book1 = db.Book.create({
         title: "How to Draw Good",
         isbn: "3289589036"
     });
-    let book2 = db.Book.create({
+    const book2 = db.Book.create({
         title: "Making the Cake",
         isbn: "23567035"
     });
-    let book3 = db.Book.create({
+    const book3 = db.Book.create({
         title: "Laughing for No Reason",
         isbn: "3297806"
     });
 
-    let author1 = db.Author.create({
+    const author1 = db.Author.create({
         name: "Arthur James"
     });
-    let author2 = db.Author.create({
+    const author2 = db.Author.create({
         name: "Evelyn Dorothy"
     });
-    let author3 = db.Author.create({
+    const author3 = db.Author.create({
         name: "Lisa Jones"
     });
 
-    let user1 = db.User.create({
+    const user1 = db.User.create({
         name: "Martin Chorley",
         barcode: 123456,
         memberType: "Staff"
     });
 
-    let loan1 = db.Loan.create({
+    const loan1 = db.Loan.create({
         dueDate: new Date(2019, 03, 27)
     });
+
+    const hash = bcrypt.hashSync("123456", 10);
+    db.Login.create({
+        barcode: 123456,
+        hash: hash
+    })
 
     // wait for all the objects to save and then instantiate relationships.
     Promise.all([book1, book2, book3, author1, author2, author3, user1, loan1])

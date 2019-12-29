@@ -52,6 +52,11 @@ User.hasMany(Loan, { as: "Loans" });
 // A Book can be on one Loan at a time
 Book.hasOne(Loan);
 
+const Login = sequelize.define("Login", {
+    barcode: Sequelize.STRING,
+    hash: Sequelize.STRING
+});
+
 //  SYNC SCHEMA
 const initialiseDatabase = function(wipeAndClear, repopulate) {
     sequelize.sync({ force: wipeAndClear }).then(
@@ -72,5 +77,6 @@ module.exports = {
     Author,
     Book,
     User,
-    Loan
+    Loan,
+    Login
 };
