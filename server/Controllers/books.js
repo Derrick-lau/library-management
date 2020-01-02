@@ -2,8 +2,9 @@ const express = require("express");
 const router = express.Router();
 const db = require("../model/data");
 const SearchBook = require("../Handlers/SearchBookHandler");
+const verifyToken = require("../Handlers/verifyToken")
 
-router.get("/search",  (req, res) => {
+router.get("/search", verifyToken, (req, res) => {
     SearchBook(req, res);
 })
 

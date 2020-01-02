@@ -1,6 +1,6 @@
 
 const db = require("../model/data");
-const ret = require("../lib/return");
+const ret = require("./return");
 
 const SearchHandler = async(req, res) => {
     try{
@@ -24,9 +24,7 @@ const SearchHandler = async(req, res) => {
             const filteredBooks2 = await filteredBooks1.filter(item => item !== undefined); 
             ret.json( filteredBooks2, res);
         } else { res.json(undefined) }; // req.body is empty
-    } 
-    catch {res.status(400).json('Wrong Input')
-    }
+    } catch {res.status(400).json('Wrong Input')}
 }
 
-module.exports = SearchHandler
+module.exports = SearchHandler;

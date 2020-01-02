@@ -12,5 +12,6 @@ const SearchRequest = async(url, data, stateSet) => {
       } catch {console.error()}
     }
 
+    
 
 export default SearchRequest;

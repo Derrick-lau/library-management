@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const db = require("../model/data");
-const ret = require("../lib/return");
+const ret = require("../Handlers/return");
 
 router.get("/", function(req, res) {
     db.User.findAll().then(function(users) {

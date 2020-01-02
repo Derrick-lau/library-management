@@ -1,11 +1,13 @@
+
 const express = require("express");
 const cors = require("cors");
 const db = require("./model/data");
 
-
+const siginRouter = require("./Controllers/signin");
 const booksRouter = require("./Controllers/books");
 const usersRouter = require("./Controllers/users");
 const loansRouter = require("./Controllers/loans");
+
 
 const server = express();
 
@@ -21,6 +23,8 @@ server.use(cors());
 // allow CORS preflight for all routes
 server.options("*", cors());
 
+
+server.use("/signin", siginRouter);
 server.use("/books", booksRouter);
 server.use("/users", usersRouter);
 server.use("/loans", loansRouter);
