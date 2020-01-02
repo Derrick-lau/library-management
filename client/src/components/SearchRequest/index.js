@@ -1,21 +1,16 @@
 import axios from "axios";
 
-const SearchRequest = (url, data, stateSet) =>{
-    const searchRequest = async(err) => {
+const SearchRequest = async(url, data, stateSet) => {
       try {  
         const res = await axios({
         url: url,
-        method: 'post',
-        data: data
+        method: 'get',
+        params: data
       });
-        {
-          res.status===200 && res.data.length>=1 ?
-          await stateSet(res.data) : stateSet([{id:'Not found'}]);
-        }
-      } catch {console.log(err)}
+        res.status===200 && res.data.length>=1 ?
+        await stateSet(res.data) : stateSet([{id:'Not found'}]);
+      } catch {console.error()}
     }
-    searchRequest();
-  }
 
 
 export default SearchRequest;

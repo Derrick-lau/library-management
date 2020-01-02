@@ -2,7 +2,7 @@
     "name": "cmt112-coursework2",
     "version": "1.0.0",
     "description": "Server for Coursework 2 for CMT112",
-    "main": "app.js",
+    "main": "server.js",
     "scripts": {
         "start": "nodemon server.js",
         "test": "echo \"Error: no test specified\" && exit 1"

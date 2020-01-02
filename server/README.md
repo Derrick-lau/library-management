@@ -324,7 +324,3 @@ GET http://127.0.0.1/search?type=user&barcode=3265897236
 The Node server uses the [Sequelize](http://docs.sequelizejs.com/) library for interacting with the SQLite database.
 
 It uses the [Express](https://expressjs.com/) framework for running the web server and routing queries.
-
-## Server Test Page
-
-This repository also contains a server test page - `server_test.html`. This can be used both to check the server is operating correctly and to act as an example of how to make requests to the server.

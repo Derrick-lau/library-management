@@ -38,10 +38,15 @@ function addData() {
         dueDate: new Date(2019, 03, 27)
     });
 
-    const hash = bcrypt.hashSync("123456", 10);
+    // const hash = bcrypt.hashSync("123456", 10);
+    // db.Login.create({
+    //     barcode: 123456,
+    //     hash: hash
+    // })
+ 
     db.Login.create({
         barcode: 123456,
-        hash: hash
+        hash: "$2b$10$MWWqLDygGLq6abgGxp9RGu5trEDutUlrO8Pq0d8BddN3IFEbV1UPe";
     })
 
     // wait for all the objects to save and then instantiate relationships.
