@@ -1,17 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="50px" height="39px" viewBox="0 0 50 39" version="1.1" xmlns="http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd" xmlns:xlink="http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
-    <title>Group</title>
-    <desc>Created with Sketch.</desc>
-    <g id="WiP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Artboard" transform="translate(-90.000000, -38.000000)">
-            <g id="Group" transform="translate(90.000000, 38.000000)">
-                <polygon id="Rectangle" fill="#808282" points="3 14 25 26.5 47 14 40.855176 39 9.08421785 39"></polygon>
-                <polygon id="Triangle" fill-opacity="0.262838724" fill="#101A1A" points="25 8 40 39 10 39"></polygon>
-                <circle id="Oval" fill="#5E6363" cx="2" cy="9" r="2"></circle>
-                <circle id="Oval" fill="#5E6363" cx="25" cy="2" r="2"></circle>
-                <circle id="Oval" fill="#5E6363" cx="48" cy="9" r="2"></circle>
-            </g>
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="600.000000pt" height="400.000000pt" viewBox="0 0 600.000000 400.000000"
+ preserveAspectRatio="xMidYMid meet">
+    <metadata>
+    Created by potrace 1.15, written by Peter Selinger 2001-2017
+    </metadata>
+    <g transform="translate(0.000000,400.000000) scale(0.100000,-0.100000)"
+    fill="#000000" stroke="none">
+        <path d="M2638 2972 c-282 -186 -300 -204 -243 -230 33 -15 45 -15 45 1 0 6
+        113 83 251 170 194 122 254 156 261 145 13 -19 -2 -248 -18 -280 -21 -40 -56
+        -63 -331 -209 -218 -116 -253 -137 -253 -157 0 -17 8 -26 32 -34 l31 -11 -32
+        -26 c-26 -21 -33 -37 -41 -86 -15 -91 -12 -215 5 -249 16 -30 12 -46 -11 -46
+        -9 0 -14 -10 -14 -29 0 -24 5 -29 31 -35 18 -3 37 -2 44 4 6 5 129 50 274 99
+        l262 90 9 -25 c16 -40 12 -309 -4 -347 -25 -61 -37 -65 -350 -130 l-296 -62 0
+        -27 c0 -25 4 -28 33 -28 46 0 52 -10 19 -30 -46 -28 -61 -75 -71 -215 -11
+        -163 -1 -210 55 -254 26 -21 33 -21 721 -21 630 0 695 1 689 16 -3 9 -6 21 -6
+        29 0 10 -66 13 -310 17 -288 4 -311 6 -331 24 -42 37 -49 74 -49 244 0 178 11
+        230 50 230 33 0 513 -80 530 -88 18 -9 81 0 80 11 0 4 0 16 0 27 0 15 -7 20
+        -25 20 -30 0 -31 5 -4 55 19 37 20 51 15 173 -7 148 -17 180 -67 205 l-32 15
+        41 13 c33 10 42 17 42 35 0 18 -10 26 -52 42 -196 74 -502 194 -519 202 -10 6
+        -28 28 -39 50 -17 34 -20 59 -20 185 0 80 4 145 9 145 17 0 514 -249 522 -261
+        5 -9 16 -10 41 -3 26 8 32 15 30 34 -1 13 -9 28 -18 34 -13 10 -13 17 -3 41
+        14 36 13 208 -2 252 -9 28 -43 53 -232 174 -122 78 -270 173 -328 211 -58 37
+        -117 68 -130 68 -14 0 -130 -70 -291 -178z"/>
         </g>
-    </g>
 </svg>

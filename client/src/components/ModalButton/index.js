@@ -5,7 +5,8 @@ import "./index.scss"
 
 
 //React-bootstrap. Modals Available at: https://react-bootstrap.github.io/components/modal/ [Accessed: 1 January 2020].
-const ModalButton = ({Property, color, input1, input2, input3}) => {
+
+const ModalButton = ({property, color, input1, input2, input3}) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -13,11 +14,11 @@ const ModalButton = ({Property, color, input1, input2, input3}) => {
   return (
     <>
       <Button variant={`${color}`} onClick={handleShow}>
-        {`${Property}`}
+        {`${property}`}
       </Button>
       <Modal size="lg" show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>{`${Property}`}</Modal.Title>
+          <Modal.Title>{`${property}`}</Modal.Title>
         </Modal.Header>
           <Modal.Body>
               <Input name={`${input1}`} type='text' placeholder ={`${input1}`}></Input>

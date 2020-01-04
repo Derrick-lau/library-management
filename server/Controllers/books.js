@@ -4,7 +4,7 @@ const db = require("../model/data");
 const SearchBook = require("../Handlers/SearchBookHandler");
 const verifyToken = require("../Handlers/verifyToken")
 
-router.get("/search", verifyToken, (req, res) => {
+router.get("/search", (req, res) => {
     SearchBook(req, res);
 })
 

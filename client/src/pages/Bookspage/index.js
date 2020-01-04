@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import SearchSection from '../../components/SearchSection';
 import ModalButton from '../../components/ModalButton';
-import SearchRequest from '../../components/SearchRequest';
+import SearchRequest from '../../api/SearchRequest';
 
 
 const Bookspage = () => {
@@ -10,6 +10,7 @@ const Bookspage = () => {
 
   //books to server
   const [BooktoServer, setBooktoServer] = useState({id:'', title: '', isbn:'', authors: ''});
+
   const HandleBooktoServer = e => {
     const { value, name } = e.target;
     setBooktoServer({...BooktoServer, [name]: value });
@@ -30,8 +31,8 @@ const Bookspage = () => {
   return (
     <main>
       <>
-      <ModalButton Property = "Add Book" color ="primary" input1="title" input2="isbn" input3="authors"/>
-      <ModalButton Property = "Delete Book" color ="danger" input1="id" input2="isbn" input3="authors"/>
+      <ModalButton property = "Add Book" color ="primary" input1="title" input2="isbn" input3="authors"/>
+      <ModalButton property = "Delete Book" color ="danger" input1="id" input2="isbn" input3="authors"/>
       <SearchSection SearchInput={HandleBooktoServer} SearchRequest={Search} mappedBooks={mappedBooks}/>
       </>  
     </main>
