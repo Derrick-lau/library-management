@@ -33,7 +33,12 @@ const Bookspage = () => {
       <>
       <ModalButton property = "Add Book" color ="primary" input1="title" input2="isbn" input3="authors"/>
       <ModalButton property = "Delete Book" color ="danger" input1="id" input2="isbn" input3="authors"/>
-      <SearchSection SearchInput={HandleBooktoServer} SearchRequest={Search} mappedBooks={mappedBooks}/>
+      <SearchSection 
+        InputName1='title' InputType1='text' InputPh1='Title'
+        InputName2='authors' InputType2='text' InputPh2='Authors'
+        SearchInput={HandleBooktoServer} SearchRequest={Search} mappedTable={mappedBooks}
+        thead1='Title' thead2='ISBN' thead3='Authors'
+      />
       </>  
     </main>
   );

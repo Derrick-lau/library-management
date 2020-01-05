@@ -12,7 +12,7 @@ import LogsPage from './pages/LogsPage';
 
 const App = () => {
   const [isSignedIn, setIsSignedIn] = useState(false)
-  const [logs, setLogs] = useState([])
+  
 
   //if token in session storage , 'isSignedin' === true
   useEffect( () => {
@@ -47,9 +47,9 @@ const App = () => {
         :
         <>
           <Header setIsSignedIn={setIsSignedIn} />
-          <Route exact path="/" render={(props) => <Homepage {...props} setlogs={setLogs}/>}/>
+          <Route exact path="/" component={Homepage}/>
           <Route path="/books" component={Bookspage}/>
-          <Route path="/logs" render={(props) => <LogsPage {...props} logs={logs}/>}/>
+          <Route path="/logs" component={LogsPage}/>
          </>
         }
       </Switch>

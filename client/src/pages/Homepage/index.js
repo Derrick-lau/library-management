@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import RoutesOnHomepage from '../../components/Menu';
-import SearchRequest from '../../api/SearchRequest';
-
 const Homepage = ({setLogs}) => {
     const [routes] = useState
     ([
@@ -11,15 +9,10 @@ const Homepage = ({setLogs}) => {
       { name: 'Logs', id: 4, url: 'logs'}
     ]);
 
-    const getLogs = () => {
-      SearchRequest('http://localhost:5000/logs',
-      '', setLogs)
-    }
-
     return (
       <main>
           {routes.map(({ id, ...outherRoutes }) => (
-          <RoutesOnHomepage key={id} {...outherRoutes} LoadData={getLogs} />
+          <RoutesOnHomepage key={id} {...outherRoutes} />
           ))}
       </main>
     );
