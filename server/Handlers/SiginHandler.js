@@ -1,8 +1,8 @@
-require('dotenv').config();
 
 const db = require("../model/data");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const writeLogs = require("../Handlers/WriteLogs");
 
 const SigninHandler = async(req, res) => {
   try{
@@ -21,14 +21,12 @@ const SigninHandler = async(req, res) => {
   } catch {return res.status(400).json('wrong credentials');}
 }
 
-//NPM. jsonwebtoken Available at: https://www.npmjs.com/package/jsonwebtoken [Accessed: 1 January 2020].
-
 const verify = (req, res, authorization) => {
   try {
     const verified = jwt.verify(authorization, "shhh");
     req.barcode = verified;
-    res.json(verified) 
-  } catch {res.sendStatus(403)} 
+    res.json(verified) ;
+  } catch {res.sendStatus(403);} 
 }
 
 const Token = (barcode) => {
@@ -41,10 +39,12 @@ const signinAuthentication = async (req, res) => {
     const {authorization} = req.headers;
     if (authorization) { 
       verify(req, res, authorization);
+
     } else {
       const admin = await SigninHandler(req, res);
       const token = await Token(admin.barcode);
-      res.header('auth-token', token).send(token);
+      await res.header('auth-token', token).send(token);
+      writeLogs(`Admin ${req.body.barcode} Signed in`);
     }
   } catch {err => res.status(400).json(err)};
 }

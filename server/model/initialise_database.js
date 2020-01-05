@@ -1,6 +1,4 @@
 
-const Sequelize = require("sequelize");
-const bcrypt = require('bcrypt');
 const db = require("./data");
 
 // Add some dummy data to the database - in practice this should be in a different file
@@ -37,16 +35,10 @@ function addData() {
     const loan1 = db.Loan.create({
         dueDate: new Date(2019, 03, 27)
     });
-
-    // const hash = bcrypt.hashSync("123456", 10);
-    // db.Login.create({
-    //     barcode: 123456,
-    //     hash: hash
-    // })
  
     db.Login.create({
         barcode: 123456,
-        hash: "$2b$10$MWWqLDygGLq6abgGxp9RGu5trEDutUlrO8Pq0d8BddN3IFEbV1UPe";
+        hash: "$2b$10$MWWqLDygGLq6abgGxp9RGu5trEDutUlrO8Pq0d8BddN3IFEbV1UPe"
     })
 
     // wait for all the objects to save and then instantiate relationships.

@@ -57,6 +57,10 @@ const Login = sequelize.define("Login", {
     hash: Sequelize.STRING
 });
 
+const Log = sequelize.define("Logs", {
+    messages:Sequelize.STRING
+});
+
 //  SYNC SCHEMA
 const initialiseDatabase = function(wipeAndClear, repopulate) {
     sequelize.sync({ force: wipeAndClear }).then(
@@ -78,5 +82,6 @@ module.exports = {
     Book,
     User,
     Loan,
-    Login
+    Login,
+    Log
 };

@@ -7,7 +7,7 @@ const SearchSection = ({SearchInput, SearchRequest, mappedBooks}) => {
                                                   
   return (
     <>
-    <div className ="serachFileld">
+    <section className ="serachFileld">
       <div className="SearchInput">
         
         <Input name='title' type='text' placeholder="Title" required onChange={SearchInput}/>
@@ -24,7 +24,7 @@ const SearchSection = ({SearchInput, SearchRequest, mappedBooks}) => {
           {mappedBooks}
         </tbody>
       </Table>
-    </div>
+    </section>
     </>
   )
 };
