@@ -6,8 +6,9 @@ import Header from './components/Header';
 import Homepage from './pages/Homepage';
 import SignIn from './pages/SignInPage';
 import Bookspage from './pages/Bookspage';
-import axios from 'axios';
 import LogsPage from './pages/LogsPage';
+import LoadToken from './api/LoadToken';
+import Userspage from './pages/Userspage';
 
 
 const App = () => {
@@ -15,28 +16,7 @@ const App = () => {
   
 
   //if token in session storage , 'isSignedin' === true
-  useEffect( () => {
-    try{
-      const token = window.sessionStorage.getItem('token');
-      if(token ) {
-        const fetch = async() =>{
-          const res = await axios({
-            url: 'http://localhost:5000/signin',
-            method: 'post',
-            headers: {
-              'Content-Type': 'application/json',
-              'authorization': token
-            }
-          });
-          if(res.status===200 && res.data){
-            setIsSignedIn(true);
-          } else {console.error()};
-        }
-        fetch();
-      }
-    } catch {console.error()}
-  },[]);
-    
+  useEffect( () => LoadToken(setIsSignedIn),[]);
   
 
   return (
@@ -48,6 +28,7 @@ const App = () => {
         <>
           <Header setIsSignedIn={setIsSignedIn} />
           <Route exact path="/" component={Homepage}/>
+          <Route path="/users" component={Userspage}/>
           <Route path="/books" component={Bookspage}/>
           <Route path="/logs" component={LogsPage}/>
          </>

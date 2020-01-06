@@ -4,18 +4,19 @@ const ret = require("./return");
 
 const SearchHandler = async(req, res) => {
     try{
+        console.log(req.body)
         const {title, authors} = req.query;
         if( title.length > 0 || authors.length > 0 ) {
-            const AllBooks = await db.Book.findAll({ include: [{model:db.Author}]});
+            const AllData = await db.Book.findAll({ include: [{model:db.Author}]});
             // get books' id name isbn authors
-            const booksData = await AllBooks.map(book => book.dataValues);
+            const Data = await AllData.map(data => data.dataValues);
             // Join books with authors
-            const AuthorsJoined = await booksData.map(mappedbook => {
+            const NamesJoined = await Data.map(mappedbook => {
                 mappedbook.Authors = mappedbook.Authors.map( author=> author.dataValues.name).join(", ");
                     return mappedbook;
             })
             // filter books that includes requested name OR authors
-            const filteredBooks1 = await AuthorsJoined.map(mappedbook => {
+            const filteredBooks1 = await NamesJoined.map(mappedbook => {
                 if(title.length > 0 && mappedbook.title.includes(title)|| authors.length > 0 && mappedbook.Authors.includes(authors)){
                     return mappedbook;
                 }

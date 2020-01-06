@@ -6,7 +6,10 @@ import "./index.scss"
 
 //React-bootstrap. Modals Available at: https://react-bootstrap.github.io/components/modal/ [Accessed: 1 January 2020].
 
-const ModalButton = ({property, color, input1, input2, input3}) => {
+const ModalButton = ({property, color, input1, input2, 
+input3, inputType1, inputType2, inputType3,
+InputPh1, InputPh2, InputPh3, handleChange, handleSubmit}) => {
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -20,19 +23,21 @@ const ModalButton = ({property, color, input1, input2, input3}) => {
         <Modal.Header closeButton>
           <Modal.Title>{`${property}`}</Modal.Title>
         </Modal.Header>
+        <form onSubmit={handleSubmit}>
           <Modal.Body>
-              <Input name={`${input1}`} type='text' placeholder ={`${input1}`}></Input>
-              <Input name={`${input2}`} type='text' placeholder ={`${input2}`}></Input>
-              <Input name={`${input3}`} type='text' placeholder ={`${input3}`}></Input>
+              <Input name={`${input1}`} type={inputType1} onChange={handleChange} placeholder ={`${InputPh1}`} required />
+              <Input name={`${input2}`} type={inputType2} onChange={handleChange} placeholder ={`${InputPh2}`} required />
+              <Input name={`${input3}`} type={inputType3} onChange={handleChange} placeholder ={`${InputPh3}`} required />
           </Modal.Body>
-        <Modal.Footer>
+          <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant={`${color}`} onClick={handleClose}>
+          <Button variant={`${color}`} type='submit'>
             Submit
           </Button>
-        </Modal.Footer>
+          </Modal.Footer>
+        </form>
       </Modal>
     </>
   );

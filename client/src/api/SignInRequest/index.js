@@ -13,9 +13,9 @@ const SignInRequest = async (url, user, Setfn ) => {
           await Setfn(true);
           const token = res.data;
           SaveTokenToSession(token);
-        } else {console.error()};
+        } else {console.error(); alert('wrong password or barcode')};
     } 
-    catch {console.error()}
+    catch {console.error(); alert('wrong password or barcode')}
   }
 
 export default SignInRequest;

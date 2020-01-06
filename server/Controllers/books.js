@@ -6,6 +6,7 @@ const verifyToken = require("../Handlers/verifyToken")
 
 router.get("/search", (req, res) => {
     SearchBook(req, res);
+    
 })
 
 router.post("/add", async(req, res) => {
