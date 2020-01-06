@@ -27,12 +27,14 @@ const Bookspage = () => {
     <tr key={id}><th scope="row">{id}</th><td>{title}</td><td>{isbn}</td><td>{Authors}</td></tr>);
 
   // States for "Add"
-  const addBook = () => {
+  const addBook = (event) => {
+    event.preventDefault();
     console.log(BooktoServer)
     AddOrDeleteRequest('http://localhost:5000/books/add', BooktoServer, 'post', 'Successfully Added')
   }
   // States for "Delete"
-  const deleteBook = () => {
+  const deleteBook = (event) => {
+    event.preventDefault();
     console.log(BooktoServer)
     AddOrDeleteRequest('http://localhost:5000/books/delete', BooktoServer, 'delete', 'Successfully Deleted')
   }

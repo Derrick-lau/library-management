@@ -11,7 +11,8 @@ const SignIn = ({setIsSignedIn, history}) => {
     setAdmin({...admin, [name]: value });
   };
 
-  const SignIn = () => {
+  const SignIn = (event) => {
+    event.preventDefault();
     SignInRequest('http://localhost:5000/signin', admin, setIsSignedIn)
   }
 
