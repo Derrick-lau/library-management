@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const SearchBook = require("../Handlers/BooksHandlers/SearchBookHandler");
-const verifyToken = require("../Handlers/GeneralHandlers/verifyToken");
-const AddBookHandler = require("../Handlers/BooksHandlers/AddBookHandler");
-const DeleteHandler = require("../Handlers/GeneralHandlers/DeleteHandler");
+const verifyToken = require("../Handlers/CommonHandlers/verifyToken");
+const AddBookHandler = require("../Handlers/BooksHandlers/AddBookAndAuthorHandler");
+const DeleteHandler = require("../Handlers/CommonHandlers/DeleteHandler");
 
 
 

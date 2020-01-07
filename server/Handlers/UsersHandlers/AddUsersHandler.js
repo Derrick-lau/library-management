@@ -1,6 +1,6 @@
 
 const db = require("../../model/data");
-const writeLogs = require("../GeneralHandlers/WriteLogs");
+const writeLogs = require("../CommonHandlers/WriteLogs");
 
 const AddUsersHandler = async(req, res) => {
 

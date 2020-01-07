@@ -8,7 +8,8 @@ import SignIn from './pages/SignInPage';
 import Bookspage from './pages/Bookspage';
 import LogsPage from './pages/LogsPage';
 import LoadToken from './api/LoadToken';
-import Userspage from './pages/Userspage';
+import UserPage from './pages/UserPage';
+import LoanPage from './pages/LoanPage';
 
 
 const App = () => {
@@ -28,8 +29,9 @@ const App = () => {
         <>
           <Header setIsSignedIn={setIsSignedIn} />
           <Route exact path="/" component={Homepage}/>
-          <Route path="/users" component={Userspage}/>
+          <Route path="/users" component={UserPage}/>
           <Route path="/books" component={Bookspage}/>
+          <Route path="/loans" component={LoanPage}/>
           <Route path="/logs" component={LogsPage}/>
          </>
         }

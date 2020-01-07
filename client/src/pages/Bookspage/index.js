@@ -18,13 +18,12 @@ const Bookspage = () => {
   };
 
   const SearchBook = () => {
-    console.log(BooktoServer)
       SearchRequest('http://localhost:5000/books/search', BooktoServer, setFetchedBooks)
   }
 
   //Table of books' data from server
     const mappedBooks = fetchedbooks.map(({id, title, isbn, Authors}) =>     
-    <tr className='pagebreak' key={id}><th scope="row">{id}</th><td>{title}</td><td>{isbn}</td><td>{Authors}</td></tr>);
+    <tr key={id}><th scope="row">{id}</th><td>{title}</td><td>{isbn}</td><td>{Authors}</td></tr>);
 
   const addBook = (event) => {
     event.preventDefault();

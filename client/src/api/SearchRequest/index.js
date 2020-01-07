@@ -16,7 +16,7 @@ const SearchRequest = async(url, data, stateSet) => {
         res.status===200 && res.data.length>=1 ?
         await stateSet(res.data) : stateSet([{id:'Not found'}]);
       } 
-      catch {console.error()}
+      catch {console.error(); stateSet([{id:'Not found'}])}
     }
 
     

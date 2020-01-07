@@ -5,7 +5,7 @@ import SearchRequest from '../../api/SearchRequest';
 import AddOrDeleteOrUpdateRequest from '../../api/AddOrDeleteOrUpdateRequest';
 
 
-const Userspage = () => {
+const UserPage = () => {
   //add/delete/search books from server
   const [fetchedUsers, setFetchedUsers] = useState([{id:'', name:'', barcode:'', memberType:''}]);
 
@@ -81,4 +81,4 @@ const Userspage = () => {
 }
 
 
-export default Userspage;
+export default UserPage;

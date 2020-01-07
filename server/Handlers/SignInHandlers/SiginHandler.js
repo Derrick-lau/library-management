@@ -2,7 +2,7 @@
 const db = require("../../model/data");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const writeLogs = require("../GeneralHandlers/WriteLogs");
+const writeLogs = require("../CommonHandlers/WriteLogs");
 
 const SigninHandler = async(req, res) => {
   try {

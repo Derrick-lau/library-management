@@ -5,9 +5,9 @@ import SearchRequest from '../../api/SearchRequest';
 
 const LogsPage = () => {
     //the date of logs being searched
-    const [createdAt, setCreatedAt] = useState('');
+    const [createdAt, setCreatedAt] = useState({id:'', createdAt:'', messages:''});
 
-    const [logs, setLogs] = useState([{}])
+    const [logs, setLogs] = useState([{id:'', createdAt:'', messages:''}])
 
     const HandleCreatedAt = e => {
         setCreatedAt(e.target.value);
@@ -18,7 +18,7 @@ const LogsPage = () => {
     }
 
     const mappedLogs = logs.map(({id, createdAt, messages}) =>     
-    <tr key={id}><th scope="row">{id}</th><td>{createdAt}</td><td>{messages}</td></tr>);
+      <tr key={id}><th scope="row">{id}</th><td>{createdAt}</td><td>{messages}</td></tr>);
 
   return (
     <main>

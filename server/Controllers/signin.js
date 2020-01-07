@@ -3,8 +3,8 @@ const router = express.Router();
 const signinAuthentication = require("../Handlers/SignInHandlers/SiginHandler");
 
 
-router.post("/", async (req, res) => {
-     await signinAuthentication(req, res);
+router.post("/", (req, res) => {
+     signinAuthentication(req, res);
 })
 
 module.exports = router;
