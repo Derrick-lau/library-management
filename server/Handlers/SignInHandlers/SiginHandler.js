@@ -1,15 +1,12 @@
 
-const db = require("../model/data");
+const db = require("../../model/data");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const writeLogs = require("../Handlers/WriteLogs");
+const writeLogs = require("../GeneralHandlers/WriteLogs");
 
 const SigninHandler = async(req, res) => {
-  try{
+  try {
     const { barcode, password } = req.body;
-    if (!barcode || !password) {
-      return res.status(400).json('please enter barcode and password');
-    } else {
     const admin = await db.Login.findOne({where: { barcode: barcode}});
     const isValid = await bcrypt.compareSync(`${password}`, `${admin.dataValues.hash}`);
       if(isValid){
@@ -18,7 +15,7 @@ const SigninHandler = async(req, res) => {
         res.status(400).json('wrong credentials');
       }
     }
-  } catch {return res.status(400).json('wrong credentials');}
+  catch { return res.status(400).json('wrong credentials');}
 }
 
 const verify = (req, res, authorization) => {
@@ -44,7 +41,7 @@ const signinAuthentication = async (req, res) => {
       const admin = await SigninHandler(req, res);
       const token = await Token(admin.barcode);
       await res.header('auth-token', token).send(token);
-      writeLogs(`Admin ${req.body.barcode} Signed in`);
+      writeLogs(`Admin ${req.body.barcode} signed in`);
     }
   } catch {err => res.status(400).json(err)};
 }

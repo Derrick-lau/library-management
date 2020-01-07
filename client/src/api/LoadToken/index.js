@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const LoadToken = (setIsSignedIn) => {
-
     try{
         const token = window.sessionStorage.getItem('token');
         if(token ) {

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import SearchSection from '../../components/SearchSection';
 import ModalButton from '../../components/ModalButton';
 import SearchRequest from '../../api/SearchRequest';
-import AddOrDeleteRequest from '../../api/AddOrDeleteRequest';
+import AddOrDeleteRequest from '../../api/AddOrDeleteOrUpdateRequest';
 
 
 const Bookspage = () => {
@@ -24,35 +24,36 @@ const Bookspage = () => {
 
   //Table of books' data from server
     const mappedBooks = fetchedbooks.map(({id, title, isbn, Authors}) =>     
-    <tr key={id}><th scope="row">{id}</th><td>{title}</td><td>{isbn}</td><td>{Authors}</td></tr>);
+    <tr className='pagebreak' key={id}><th scope="row">{id}</th><td>{title}</td><td>{isbn}</td><td>{Authors}</td></tr>);
 
-  // States for "Add"
   const addBook = (event) => {
     event.preventDefault();
-    console.log(BooktoServer)
     AddOrDeleteRequest('http://localhost:5000/books/add', BooktoServer, 'post', 'Successfully Added')
   }
-  // States for "Delete"
+  
   const deleteBook = (event) => {
     event.preventDefault();
-    console.log(BooktoServer)
     AddOrDeleteRequest('http://localhost:5000/books/delete', BooktoServer, 'delete', 'Successfully Deleted')
   }
 
   return (
     <main>
-      <ModalButton property = "Add Book" color ="primary" 
-        InputPh1='Title' InputPh2='ISBN' InputPh3='Authors eg.Arthur James, Evelyn Dorothy'
-        input1="title" input2="isbn" input3="authors"
-        inputType1="text" inputType2="text" inputType3="text" 
-        handleChange={HandleBooktoServer} handleSubmit={addBook}
-      />
-      <ModalButton property = "Delete Book" color ="danger" 
-        InputPh1='# ID' InputPh2='ISBN' InputPh3=''
-        input1="id" input2="isbn" input3=""
-        inputType1="text" inputType2="text" inputType3="hidden"
-        handleChange={HandleBooktoServer} handleSubmit={deleteBook}
-      />
+      <div className='cudButtons'>
+        <ModalButton property = "Add Book" color ="primary" 
+          InputPh1='Title' InputPh2='ISBN' InputPh3='Authors eg.Arthur James, Evelyn Dorothy'
+          input1="title" input2="isbn" input3="authors" inputType0="hidden"
+          inputType1="text" inputType2="text" inputType3="text"
+          selectDisplay = "none" 
+          handleChange={HandleBooktoServer} handleSubmit={addBook} 
+        />
+
+        <ModalButton property = "Delete Book" color ="danger" 
+          InputPh1='# ID' InputPh2='ISBN' input1="id" input2="isbn"
+          inputType1="text" inputType2="text" inputType3="hidden" inputType0="hidden"
+          selectDisplay="none" handleChange={HandleBooktoServer} handleSubmit={deleteBook}
+        />
+      </div>
+
       <SearchSection 
         InputName1='title' InputType1='text' InputPh1='Title'
         InputName2='authors' InputType2='text' InputPh2='Authors'

@@ -1,10 +1,8 @@
 
-const db = require("../model/data");
-const ret = require("./return");
+const db = require("../../model/data");
 
 const SearchHandler = async(req, res) => {
     try{
-        console.log(req.body)
         const {title, authors} = req.query;
         if( title.length > 0 || authors.length > 0 ) {
             const AllData = await db.Book.findAll({ include: [{model:db.Author}]});
@@ -23,7 +21,7 @@ const SearchHandler = async(req, res) => {
             })
             //filter item in array which is undefined
             const filteredBooks2 = await filteredBooks1.filter(item => item !== undefined); 
-            ret.json( filteredBooks2, res);
+            res.json( filteredBooks2);
             
             
         } else { res.json(undefined) }; // req.body is empty

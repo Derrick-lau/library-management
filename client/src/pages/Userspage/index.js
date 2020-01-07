@@ -2,60 +2,79 @@ import React, {useState} from 'react';
 import SearchSection from '../../components/SearchSection';
 import ModalButton from '../../components/ModalButton';
 import SearchRequest from '../../api/SearchRequest';
-import AddOrDeleteRequest from '../../api/AddOrDeleteRequest';
+import AddOrDeleteOrUpdateRequest from '../../api/AddOrDeleteOrUpdateRequest';
 
 
 const Userspage = () => {
   //add/delete/search books from server
-  const [fetchedbooks, setFetchedBooks] = useState([{id: '', title: '', isbn: '', authors: ''}]);
+  const [fetchedUsers, setFetchedUsers] = useState([{id:'', name:'', barcode:'', memberType:''}]);
 
   //add/delete/search books to server
-  const [BooktoServer, setBooktoServer] = useState({id:'', title: '', isbn:'', authors: ''});
+  const [userToServer, setuserToServer] = useState({name:'', barcode:'', memberType:''});
 
-  const HandleBooktoServer = e => {
+  const HandleUserToServer = e => {
     const { value, name } = e.target;
-    setBooktoServer({...BooktoServer, [name]: value });
+    setuserToServer({...userToServer, [name]: value });
   };
 
-  const SearchBook = () => {
-    console.log(BooktoServer)
-      SearchRequest('http://localhost:5000/books/search', BooktoServer, setFetchedBooks)
+  const HandleMemberTypeChange = e => {
+    setuserToServer({...userToServer, memberType: e.target.value });
+  }
+
+  const SearchUser = () => {
+      SearchRequest('http://localhost:5000/users/search', userToServer, setFetchedUsers)
   }
 
   //Table of books' data from server
-    const mappedBooks = fetchedbooks.map(({id, title, isbn, Authors}) =>     
-    <tr key={id}><th scope="row">{id}</th><td>{title}</td><td>{isbn}</td><td>{Authors}</td></tr>);
+  const mappedUsers = fetchedUsers.map(({id, name, barcode, memberType}) =>     
+    <tr key={id}><th scope="row">{id}</th><td>{name}</td><td>{barcode}</td><td>{memberType}</td></tr>);
 
-  // States for "Add"
-  const addBook = () => {
-    console.log(BooktoServer)
-    AddOrDeleteRequest('http://localhost:5000/books/add', BooktoServer, 'post', 'Successfully Added')
+  const addUser = (event) => {
+    event.preventDefault();
+    AddOrDeleteOrUpdateRequest('http://localhost:5000/users/add', userToServer, 'post', 'Successfully Added')
   }
-  // States for "Delete"
-  const deleteBook = () => {
-    console.log(BooktoServer)
-    AddOrDeleteRequest('http://localhost:5000/books/delete', BooktoServer, 'delete', 'Successfully Deleted')
+
+  const UpdateUser = (event) => {
+    event.preventDefault();
+    AddOrDeleteOrUpdateRequest(`http://localhost:5000/users/${userToServer.id}`, userToServer, 'put', 'Successfully updated')
+  }
+
+  const DeleteUser = (event) => {
+    event.preventDefault();
+    AddOrDeleteOrUpdateRequest('http://localhost:5000/users/delete', userToServer, 'delete', 'Successfully Deleted')
   }
 
   return (
     <main>
-      <ModalButton property = "Add Book" color ="primary" 
-        InputPh1='Title' InputPh2='ISBN' InputPh3='Authors eg.Arthur James, Evelyn Dorothy'
-        input1="title" input2="isbn" input3="authors"
-        inputType1="text" inputType2="text" inputType3="text" 
-        handleChange={HandleBooktoServer} handleSubmit={addBook}
-      />
-      <ModalButton property = "Delete Book" color ="danger" 
-        InputPh1='# ID' InputPh2='ISBN' InputPh3=''
-        input1="id" input2="isbn" input3=""
-        inputType1="text" inputType2="text" inputType3="hidden"
-        handleChange={HandleBooktoServer} handleSubmit={deleteBook}
-      />
+      <div className={'cudButtons'}>
+        <ModalButton property = "Add User" color ="primary" 
+          InputPh1='name' InputPh2='barcode' input1="name" input2="barcode" inputType0="hidden"
+          inputType1="text" inputType2="text" inputType3="hidden" TypeofSelect="Member Type:"
+          selectValue1="Staff" handleSelectChange={HandleMemberTypeChange} SelectRequireBool='required'
+          selectValue2="Student" handleChange={HandleUserToServer} handleSubmit={addUser}
+        />
+
+        <ModalButton property = "Update User" color ="warning" 
+          inputType0="text" InputPh0='# ID' input0="id"
+          InputPh1='name' InputPh2='barcode' input1="name" input2="barcode" 
+          inputType1="text" inputType2="text" inputType3="hidden" TypeofSelect="Member Type:"
+          selectValue1="Staff" handleSelectChange={HandleMemberTypeChange} SelectRequireBool='required'
+          selectValue2="Student" handleChange={HandleUserToServer} handleSubmit={UpdateUser}
+        />
+
+        <ModalButton property = "Delete User" color ="danger" 
+          InputPh1='# ID' InputPh2='barcode' input1="id" input2="barcode"
+          inputType1="text" inputType2="text" inputType3="hidden" inputType0="hidden"
+          selectDisplay = "none" handleChange={HandleUserToServer} handleSubmit={DeleteUser}
+        />
+      </div>
+      
+
       <SearchSection 
-        InputName1='title' InputType1='text' InputPh1='Title'
-        InputName2='authors' InputType2='text' InputPh2='Authors'
-        SearchInput={HandleBooktoServer} SearchRequest={SearchBook} mappedTable={mappedBooks}
-        thead1='Title' thead2='ISBN' thead3='Authors'
+        InputName1='name' InputType1='text' InputPh1='name'
+        InputName2='barcode' InputType2='text' InputPh2='barcode'
+        SearchInput={ HandleUserToServer} SearchRequest={SearchUser} mappedTable={mappedUsers}
+        thead1='name' thead2='barcode' thead3='memberType'
       />
     </main>
   );

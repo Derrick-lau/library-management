@@ -7,6 +7,7 @@ const siginRouter = require("./Controllers/signin");
 const booksRouter = require("./Controllers/books");
 const usersRouter = require("./Controllers/users");
 const loansRouter = require("./Controllers/loans");
+const logsRouter = require("./Controllers/logs");
 
 
 const server = express();
@@ -28,6 +29,7 @@ server.use("/signin", siginRouter);
 server.use("/books", booksRouter);
 server.use("/users", usersRouter);
 server.use("/loans", loansRouter);
+server.use("/logs", logsRouter);
 
 // handle errors last
 server.use((err, req, res, next) => {
