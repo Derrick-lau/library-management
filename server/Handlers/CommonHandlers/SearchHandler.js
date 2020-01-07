@@ -23,7 +23,7 @@ const SearchHandler = async(req, res, table, query1, query2) => {
             
         } else { res.json(undefined) }; // req.body is empty
     } 
-    catch {res.status(400).json('Wrong Input')}
+    catch {console.error; res.status(400).json('Wrong Input')}
 
 }
 

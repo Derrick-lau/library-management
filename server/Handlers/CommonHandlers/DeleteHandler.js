@@ -14,7 +14,7 @@ const DeleteBookHandler = async(req, res, table, body1, body2, deleteItem) => {
             res.status(400).json("Not found");
         }
     
-    } catch {res.status(400).json("Failed to delete") };
+    } catch {console.error; res.status(400).json("Failed to delete") };
 }
 
 module.exports = DeleteBookHandler;

@@ -10,7 +10,7 @@ const AddUsersHandler = async(req, res) => {
         res.json("Successfully Added");
         writeLogs(`Added User Name: '${name}' , Barcode: ${barcode}, MemberType: ${memberType}`);
     } 
-    catch {res.status(400).json("Failed to add") };
+    catch {console.error; res.status(400).json("Failed to add") };
 }
 
 module.exports = AddUsersHandler;

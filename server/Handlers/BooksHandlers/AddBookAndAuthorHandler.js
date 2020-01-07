@@ -6,12 +6,14 @@ const AddBookHandler = async(req, res) => {
     try {
         const {title, isbn, authors} = req.body;
         const book = await db.Book.create({ title: title, isbn: isbn});
-        AddAuthorHandler(res, authors, title, isbn, book)
-
-    } catch {res.status(400).json("Failed to add") };
+        await AddAuthorHandler(authors, book)
+        res.json("Successfully Added");
+        writeLogs(`Added book Title: '${title}' , ISBN: ${isbn}, Authors: ${authors}`);
+        
+    } catch {console.error; res.status(400).json("Failed to add") };
 }
 
-const AddAuthorHandler = async(res, authors, title, isbn, book) => {
+const AddAuthorHandler = async(authors, book) => {
     try {
         // put authors into an array
         const namesArray = await authors.split(', '); 
@@ -20,10 +22,7 @@ const AddAuthorHandler = async(res, authors, title, isbn, book) => {
             let author = await db.Author.findOrCreate({where:{name: name }});
             await book.addAuthor(author[0]); 
         }
-        res.json("Successfully Added");
-        writeLogs(`Added book Title: '${title}' , ISBN: ${isbn}, Authors: ${authors}`);
-
-    } catch {res.status(400).json("Failed to add")};
+    } catch {console.error};
 }
 
 module.exports = AddBookHandler;

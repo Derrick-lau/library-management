@@ -9,7 +9,7 @@ const verifyToken = (req, res, next) => {
             const verified = jwt.verify(authorization, "shhh");
             req.barcode = verified;
             next();
-        } catch {res.sendStatus(403)}
+        } catch {console.error; res.sendStatus(403)}
     }
 }
 
