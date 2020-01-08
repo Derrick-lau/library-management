@@ -27,7 +27,7 @@ const LogsPage = () => {
         InputName1='date' InputType1='date' InputPh1='Date'
         InputName2='' InputType2='hidden' InputPh2=''
         SearchInput={HandleCreatedAt} SearchRequest={getLogs} mappedTable={mappedLogs}
-        thead1='Date' thead2='Messages' thead3=''
+        thead1='Date and Time' thead2='Messages' thead3=''
         />
     </main>
   );
