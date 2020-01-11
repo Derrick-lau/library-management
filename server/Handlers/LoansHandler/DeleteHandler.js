@@ -1,15 +1,15 @@
 
 const db = require("../../model/data");
-const writeLogs = require("./WriteLogs");
+const writeLogs = require("../CommonHandlers/WriteLogs");
 
-const DeleteHandler = async(req, res, table, body1, body2) => {
+const DeleteHandler = async(req, res, table, body1) => {
 
     try {
         const data = await db[table].findByPk(req.body[body1]);
-        if (data && data.dataValues[body2] === req.body[body2]) { 
+        if (data) { 
             await data.destroy(); 
             res.json('successfully deleted');
-            writeLogs(`Deleted ${table}:  ${req.body[body1]},  ${req.body[body2]}`)
+            writeLogs(`Deleted ${table}:  ${req.body[body1]}`)
         } else {
             res.sendStatus(400);
         }

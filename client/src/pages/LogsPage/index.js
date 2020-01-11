@@ -14,7 +14,7 @@ const LogsPage = () => {
       };
 
     const getLogs = () => {
-        SearchRequest('http://localhost:5000/logs/search', {createdAt: createdAt}, setLogs)
+        SearchRequest('http://127.0.0.1:5000/logs/search', {createdAt: createdAt}, setLogs)
     }
 
     const mappedLogs = logs.map(({id, createdAt, messages}) =>     
@@ -22,12 +22,12 @@ const LogsPage = () => {
 
   return (
     <main>
-        Audit Logs
+        <h4>Audit Logs</h4>
         <SearchSection 
         InputName1='date' InputType1='date' InputPh1='Date'
         InputName2='' InputType2='hidden' InputPh2=''
         SearchInput={HandleCreatedAt} SearchRequest={getLogs} mappedTable={mappedLogs}
-        thead1='Date and Time' thead2='Messages' thead3=''
+        theadID='LogID' thead1='Date and Time' thead2='Messages' thead3=''
         />
     </main>
   );

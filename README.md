@@ -1,68 +1,69 @@
+
+# CW2 Client
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br />
+1. Please runs cw2 - server to make this client work
+2. Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### `Fuctionalities`
 
-### `npm test`
+# Sign In：
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Sign in with demo account: `barcode: 123456`, `password: 123456`. If login is successful, you will be redirected to the home page.
+After you signed in, a token will be stored on the session storage.
 
-### `npm run build`
+# Navigation bar:
+If `Home` has been clicked, you will be redirected to the home page.
+If `Sign out` has been clicked, the token will be cleared and you will be redirected to sign in page.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Home page:
+There is a menu with 4 directories (Book, User, Loan, Log)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+# Book:
+Search Book: Type user`title` and/or Book `authors` and Click Search. The server will then return a list of books that includes requested `title` and/or Book `authors`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Add book: Type Book `title`, `authors`, `isbn` and submit.
 
-### `npm run eject`
+Delete book: Type Book `BookID` to specify the book, `isbn` and submit.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+BookId can be acquired on the search field.
+if the close button is clicked on Add and Delete modal, you need to re-type in search field to search a book.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# User:
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Search User: Type User`Username` and/or User`barcode` and Click Search. The server will then return a list of users that includes requested `Username` and/or User`barcode`.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Add User: Type User`Username`, `Barcode` and select a member type either `staff` or `student` and submit.
 
-## Learn More
+Update User: Type User `UserId` to specify the user,`Barcode`, and select a member type either `staff` or `student` and submit.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Delete User: Type User`UserId` to specify the user, `barcode` and submit.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+UserId can be acquired on the search field.
+if the close button is clicked on Add, Update and Delete modal, you need to re-type in search field to search a user.
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+# Loan:
 
-### Analyzing the Bundle Size
+Search the user currently borrowing a book :  Type `BookId` and click Search. The server will then return a User currently borrowing that book.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+Search a user's loan : Type `UserId` and click Search. The server will then return a list of the User's loans.
 
-### Making a Progressive Web App
+Add Loan: Type `BookId`, `UserId` and select `dueDate`and submit.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+Update Loan: Type `LoanId` to specify the Loan, select a new `dueDate`and submit.
 
-### Advanced Configuration
+Delete Loan: Type `LoanId` to specify the Loan and submit.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+##LoanId can be acquired on the search field.
+##if the close button is clicked on Add, Update and Delete modal, you need to re-type in search field to search a Loan.
 
-### Deployment
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+# Log:
 
-### `npm run build` fails to minify
+Search audit logs: Select a `date` and search. The server will then return a list of logs on the date you have selected.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+source:https://github.com/Derrick-lau/LMS
+

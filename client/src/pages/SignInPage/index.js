@@ -13,7 +13,7 @@ const SignIn = ({setIsSignedIn, history}) => {
 
   const SignIn = (event) => {
     event.preventDefault();
-    SignInRequest('http://localhost:5000/signin', admin, setIsSignedIn)
+    SignInRequest('http://127.0.0.1:5000/signin', admin, setIsSignedIn)
   }
 
   return (

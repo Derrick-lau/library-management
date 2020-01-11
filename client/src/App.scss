@@ -9,6 +9,11 @@ body {
     color: black;
   }
 
+h5 {
+    margin-top: 10%;
+}
+
+//For HomePage, UserPage, BookPage, LogsPage
 main {
   background-color: white;
     width: 80%;
@@ -22,6 +27,7 @@ main {
     padding: 5vh 5vw;
   }
 
+//For ADD UPDATE DELETE BUTTON ON UserPage, BookPage, LogsPage
 .cudButtons {
     display: flex;
     width:100%;

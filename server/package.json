@@ -4,12 +4,8 @@
     "description": "Server for Coursework 2 for CMT112",
     "main": "server.js",
     "scripts": {
-        "start": "nodemon server.js",
+        "start": "node server.js",
         "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git@gitlab.cs.cf.ac.uk:scm2mjc/cmt112-coursework2.git"
     },
     "author": "",
     "license": "MIT",
@@ -19,6 +15,7 @@
         "dotenv": "^8.2.0",
         "express": "^4.16.4",
         "http-errors": "^1.7.1",
+        "jest": "^24.9.0",
         "jsonwebtoken": "^8.5.1",
         "nodemon": "^2.0.2",
         "sequelize": "^4.44.3",

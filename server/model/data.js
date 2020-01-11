@@ -49,14 +49,17 @@ const Loan = sequelize.define("Loan", {
 
 // A User can have many Loans
 User.hasMany(Loan, { as: "Loans" });
+
 // A Book can be on one Loan at a time
 Book.hasOne(Loan);
 
+// Login table for authentication 
 const Login = sequelize.define("Login", {
     barcode: Sequelize.STRING,
     hash: Sequelize.STRING
 });
 
+// Log table for audit logs 
 const Log = sequelize.define("Logs", {
     messages:Sequelize.STRING
 });

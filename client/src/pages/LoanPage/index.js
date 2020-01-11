@@ -7,74 +7,93 @@ import AddOrDeleteOrUpdateRequest from '../../api/AddOrDeleteOrUpdateRequest';
 
 const LoanPage = () => {
   //add/delete/search books from server
-  const [fetchedUsers, setFetchedUsers] = useState([{id:'', name:'', barcode:'', memberType:''}]);
+  const [fetchedData, setFetchedData] = useState([{id:"", dueDate:"", BookId:""}]);
 
   //add/delete/search books to server
-  const [userToServer, setuserToServer] = useState({name:'', barcode:'', memberType:''});
+  const [dataToServer, setDataToServer] = useState({id:"", dueDate:"", BookId:"", UserId:""});
 
-  const HandleUserToServer = e => {
+  //when close button has been clicked on the modal, init state
+  const HandleInitState = () => setDataToServer({id:"", dueDate:"", BookId:"", UserId:""});
+  
+  // data of the user borrowing a book from server
+  const [userBorrowing, setUserBorrowing] = useState([{id:'', name:'', barcode:'', memberType:''}])
+
+
+  const HandleDataToServer = e => {
     const { value, name } = e.target;
-    setuserToServer({...userToServer, [name]: value });
+    setDataToServer({...dataToServer, [name]: value });
   };
 
-  const HandleMemberTypeChange = e => {
-    setuserToServer({...userToServer, memberType: e.target.value });
-  }
 
+  //Api Requests
   const SearchUser = () => {
-      SearchRequest('http://localhost:5000/users/search', userToServer, setFetchedUsers)
+    SearchRequest('http://127.0.0.1:5000/loans/search', dataToServer, setFetchedData)
   }
 
-  //Table of books' data from server
-  const mappedUsers = fetchedUsers.map(({id, name, barcode, memberType}) =>     
-    <tr key={id}><th scope="row">{id}</th><td>{name}</td><td>{barcode}</td><td>{memberType}</td></tr>);
+  const GetUserBorrowingAbook = () => {
+    SearchRequest('http://127.0.0.1:5000/loans/user', dataToServer, setUserBorrowing)
+  }
 
-  const addUser = (event) => {
+  const addLoan = (event) => {
     event.preventDefault();
-    AddOrDeleteOrUpdateRequest('http://localhost:5000/users/add', userToServer, 'post', 'Successfully Added')
+    AddOrDeleteOrUpdateRequest(`http://127.0.0.1:5000/loans/book/${dataToServer.BookId}/user/${dataToServer.UserId}`, dataToServer, 'post', 'Successfully Added')
   }
 
-  const UpdateUser = (event) => {
+  const UpdateLoan = (event) => {
     event.preventDefault();
-    AddOrDeleteOrUpdateRequest(`http://localhost:5000/users/${userToServer.id}`, userToServer, 'put', 'Successfully updated')
+    AddOrDeleteOrUpdateRequest(`http://127.0.0.1:5000/loans/${dataToServer.id}`, dataToServer, 'put', 'Successfully updated')
   }
 
-  const DeleteUser = (event) => {
+  const DeleteLoan = (event) => {
     event.preventDefault();
-    AddOrDeleteOrUpdateRequest('http://localhost:5000/users/delete', userToServer, 'delete', 'Successfully Deleted')
+    AddOrDeleteOrUpdateRequest('http://127.0.0.1:5000/loans/delete', dataToServer, 'delete', 'Successfully Deleted')
   }
+
+  // A user's loans to table
+  const mappedLoans = fetchedData.map(({id, BookId, isbn, dueDate}) =>     
+    <tr key={id}><th scope="row">{id}</th><td>{BookId}</td><td>{isbn}</td><td>{dueDate}</td></tr>);
+
+  // users borrowing a book to table
+  const mappedUsers = userBorrowing.map(({id, name, barcode, memberType}) =>     
+    <tr key={id}><th scope="row">{id}</th><td>{name}</td><td>{barcode}</td><td>{ memberType}</td></tr>);
+
 
   return (
     <main>
-      <div className={'cudButtons'}>
-        <ModalButton property = "Add User" color ="primary" 
-          InputPh1='name' InputPh2='barcode' input1="name" input2="barcode" inputType0="hidden"
-          inputType1="text" inputType2="text" inputType3="hidden" TypeofSelect="Member Type:"
-          selectValue1="Staff" handleSelectChange={HandleMemberTypeChange} SelectRequireBool='required'
-          selectValue2="Student" handleChange={HandleUserToServer} handleSubmit={addUser}
-        />
-
-        <ModalButton property = "Update User" color ="warning" 
-          inputType0="text" InputPh0='# ID' input0="id"
-          InputPh1='name' InputPh2='barcode' input1="name" input2="barcode" 
-          inputType1="text" inputType2="text" inputType3="hidden" TypeofSelect="Member Type:"
-          selectValue1="Staff" handleSelectChange={HandleMemberTypeChange} SelectRequireBool='required'
-          selectValue2="Student" handleChange={HandleUserToServer} handleSubmit={UpdateUser}
-        />
-
-        <ModalButton property = "Delete User" color ="danger" 
-          InputPh1='# ID' InputPh2='barcode' input1="id" input2="barcode"
-          inputType1="text" inputType2="text" inputType3="hidden" inputType0="hidden"
-          selectDisplay = "none" handleChange={HandleUserToServer} handleSubmit={DeleteUser}
-        />
-      </div>
       
+      <section className={'cudButtons'}>
+        <ModalButton property = "Add Loan" color ="primary" initialiseState={HandleInitState}
+          InputPh1='UserID' InputPh2='BookID' InputPh3='Due Date' input1="UserId" input2="BookId" 
+          inputType1="text" inputType2="text" inputType3="DATE" selectDisplay = "none" input3="dueDate"
+          handleChange={HandleDataToServer} handleSubmit={addLoan} inputType0="hidden"
+        />
 
+        <ModalButton property = "Update Loan" color ="warning" initialiseState={HandleInitState}
+          inputType0="text" InputPh0='LoanID' input0="id" InputPh1='Due Date' input1="dueDate"
+          inputType1="date" inputType2="hidden" inputType3="hidden" selectDisplay = "none"
+          handleChange={HandleDataToServer} handleSubmit={UpdateLoan}
+        />
+
+        <ModalButton property = "Remove Loan" color ="danger" 
+          InputPh1='LoanID' input1="id" InputPh2='UserID' input2="UserId" initialiseState={HandleInitState}
+          inputType1="text" inputType2="hidden" inputType3="hidden" inputType0="hidden"
+          selectDisplay = "none" handleChange={HandleDataToServer} handleSubmit={DeleteLoan}
+        />
+      </section>
+
+      <h5>User currently borrowing a Book</h5>
       <SearchSection 
-        InputName1='name' InputType1='text' InputPh1='name'
-        InputName2='barcode' InputType2='text' InputPh2='barcode'
-        SearchInput={ HandleUserToServer} SearchRequest={SearchUser} mappedTable={mappedUsers}
-        thead1='name' thead2='barcode' thead3='memberType'
+        InputName1='bookID' InputType1='text' InputPh1='BookID'
+        InputName2='barcode' InputType2='hidden' InputPh2='barcode'
+        SearchInput={HandleDataToServer} SearchRequest={GetUserBorrowingAbook} mappedTable={mappedUsers}
+        theadID='UserID' thead1="Name" thead2='Barcode' thead3='MemberType'
+      />
+
+      <h5>User’s current Loans</h5>
+      <SearchSection 
+        InputName1='userID' InputType1='text' InputPh1='UserID' InputType2='hidden' 
+        SearchInput={HandleDataToServer} SearchRequest={SearchUser} mappedTable={mappedLoans}
+        theadID='LoanID' thead1='BookID' thead2='ISBN' thead3='Due Date'
       />
     </main>
   );

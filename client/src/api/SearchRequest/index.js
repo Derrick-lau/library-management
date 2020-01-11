@@ -1,12 +1,12 @@
 import axios from "axios";
 
-const SearchRequest = async(url, data, stateSet) => {
+const SearchRequest = async(url, params, stateSet) => {
       try { 
         const token = window.sessionStorage.getItem('token'); 
         const res = await axios({
           url: url,
           method: 'get',
-          params: data,
+          params: params,
           headers: {
             'Content-Type': 'application/json',
             'authorization': token

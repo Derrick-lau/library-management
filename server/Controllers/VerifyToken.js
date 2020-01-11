@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 
+//use as a middleware
 const verifyToken = (req, res, next) => {
     const {authorization} = req.headers
     if(!authorization){
@@ -9,7 +10,7 @@ const verifyToken = (req, res, next) => {
             const verified = jwt.verify(authorization, "shhh");
             req.barcode = verified;
             next();
-        } catch {console.error; res.sendStatus(403)}
+        } catch {res.sendStatus(403)}
     }
 }
 

@@ -12,6 +12,10 @@ const UserPage = () => {
   //add/delete/search books to server
   const [userToServer, setuserToServer] = useState({name:'', barcode:'', memberType:''});
 
+  const HandleInitState = () => setuserToServer({name:'', barcode:'', memberType:''});
+
+
+  //onChange Hnadlers
   const HandleUserToServer = e => {
     const { value, name } = e.target;
     setuserToServer({...userToServer, [name]: value });
@@ -21,33 +25,39 @@ const UserPage = () => {
     setuserToServer({...userToServer, memberType: e.target.value });
   }
 
-  const SearchUser = () => {
-      SearchRequest('http://localhost:5000/users/search', userToServer, setFetchedUsers)
-  }
 
-  //Table of books' data from server
-  const mappedUsers = fetchedUsers.map(({id, name, barcode, memberType}) =>     
-    <tr key={id}><th scope="row">{id}</th><td>{name}</td><td>{barcode}</td><td>{memberType}</td></tr>);
+  //Api Requests
+  const SearchUser = () => {
+      SearchRequest('http://127.0.0.1:5000/users/search', userToServer, setFetchedUsers)
+  }
 
   const addUser = (event) => {
     event.preventDefault();
-    AddOrDeleteOrUpdateRequest('http://localhost:5000/users/add', userToServer, 'post', 'Successfully Added')
+    AddOrDeleteOrUpdateRequest('http://127.0.0.1:5000/users/add', userToServer, 'post', 'Successfully Added')
+
   }
 
   const UpdateUser = (event) => {
     event.preventDefault();
-    AddOrDeleteOrUpdateRequest(`http://localhost:5000/users/${userToServer.id}`, userToServer, 'put', 'Successfully updated')
+    AddOrDeleteOrUpdateRequest(`http://127.0.0.1:5000/users/${userToServer.id}`, userToServer, 'put', 'Successfully updated')
+
   }
 
   const DeleteUser = (event) => {
     event.preventDefault();
-    AddOrDeleteOrUpdateRequest('http://localhost:5000/users/delete', userToServer, 'delete', 'Successfully Deleted')
+    AddOrDeleteOrUpdateRequest('http://127.0.0.1:5000/users/delete', userToServer, 'delete', 'Successfully Deleted')
+
   }
+
+  //map data to a table 
+  const mappedUsers = fetchedUsers.map(({id, name, barcode, memberType}) =>     
+  <tr key={id}><th scope="row">{id}</th><td>{name}</td><td>{barcode}</td><td>{memberType}</td></tr>);
+
 
   return (
     <main>
-      <div className={'cudButtons'}>
-        <ModalButton property = "Add User" color ="primary" 
+      <section className={'cudButtons'}>
+        <ModalButton property = "Add User" color ="primary" initialiseState={HandleInitState}
           InputPh1='name' InputPh2='barcode' input1="name" input2="barcode" inputType0="hidden"
           inputType1="text" inputType2="text" inputType3="hidden" TypeofSelect="Member Type:"
           selectValue1="Staff" handleSelectChange={HandleMemberTypeChange} SelectRequireBool='required'
@@ -55,26 +65,26 @@ const UserPage = () => {
         />
 
         <ModalButton property = "Update User" color ="warning" 
-          inputType0="text" InputPh0='# ID' input0="id"
+          inputType0="text" InputPh0='UserID' input0="id" initialiseState={HandleInitState}
           InputPh1='name' InputPh2='barcode' input1="name" input2="barcode" 
           inputType1="text" inputType2="text" inputType3="hidden" TypeofSelect="Member Type:"
           selectValue1="Staff" handleSelectChange={HandleMemberTypeChange} SelectRequireBool='required'
           selectValue2="Student" handleChange={HandleUserToServer} handleSubmit={UpdateUser}
         />
 
-        <ModalButton property = "Delete User" color ="danger" 
-          InputPh1='# ID' InputPh2='barcode' input1="id" input2="barcode"
+        <ModalButton property = "Delete User" color ="danger" initialiseState={HandleInitState}
+          InputPh1='UserID' InputPh2='barcode' input1="id" input2="barcode"
           inputType1="text" inputType2="text" inputType3="hidden" inputType0="hidden"
           selectDisplay = "none" handleChange={HandleUserToServer} handleSubmit={DeleteUser}
         />
-      </div>
+      </section>
       
 
       <SearchSection 
         InputName1='name' InputType1='text' InputPh1='name'
         InputName2='barcode' InputType2='text' InputPh2='barcode'
         SearchInput={ HandleUserToServer} SearchRequest={SearchUser} mappedTable={mappedUsers}
-        thead1='name' thead2='barcode' thead3='memberType'
+        theadID="UserID"thead1='name' thead2='barcode' thead3='memberType'
       />
     </main>
   );

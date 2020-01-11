@@ -14,9 +14,9 @@ const AddOrDeleteOrUpdateRequest = async (url, data, method, message) => {
         });
         if(res.status===200){
             alert(message)
-        } else {console.error(); alert('Wrong Input')};
+        } else {alert('Wrong Input')};
     } 
-    catch {console.error(); alert('wrong Input')}
+    catch {alert('wrong Input')}
 }
     
 

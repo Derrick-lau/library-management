@@ -19,7 +19,6 @@ const App = () => {
   //if token in session storage , 'isSignedin' === true
   useEffect( () => LoadToken(setIsSignedIn),[]);
   
-
   return (
     <>
       <Switch>

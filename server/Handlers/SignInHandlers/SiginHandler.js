@@ -15,7 +15,7 @@ const SigninHandler = async(req, res) => {
         res.status(400).json('wrong credentials');
       }
     }
-  catch {console.error; res.status(400).json('wrong credentials');}
+  catch {res.status(400).json('wrong credentials');}
 }
 
 const verify = (req, res, authorization) => {
@@ -23,7 +23,7 @@ const verify = (req, res, authorization) => {
     const verified = jwt.verify(authorization, "shhh");
     req.barcode = verified;
     res.json(verified) ;
-  } catch {console.error; res.sendStatus(403);} 
+  } catch {res.sendStatus(403);} 
 }
 
 const Token = (barcode) => {
@@ -43,7 +43,7 @@ const signinAuthentication = async (req, res) => {
       await res.header('auth-token', token).send(token);
       writeLogs(`Admin ${req.body.barcode} signed in`);
     }
-  } catch {console.error; err => res.status(400).json(err)};
+  } catch {err => res.status(400).json(err)};
 }
 
 

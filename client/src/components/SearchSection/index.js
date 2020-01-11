@@ -5,8 +5,8 @@ import Input from '../Styled-Input';
 
 const SearchSection = ({InputName1, InputType1, InputPh1, 
 InputName2, InputType2, InputPh2, 
-SearchInput, SearchRequest, 
-mappedTable, thead1, thead2, thead3}) => {
+SearchInput, SearchRequest, Search="Search",
+mappedTable, theadID, thead1, thead2, thead3}) => {
                                                   
   return (
     <>
@@ -14,11 +14,11 @@ mappedTable, thead1, thead2, thead3}) => {
       <Input name= {InputName1} type={InputType1} placeholder={InputPh1} onChange={SearchInput}/>
       <Input name={InputName2} type={InputType2} placeholder={InputPh2} onChange={SearchInput}/>
       <Button variant="secondary"  onClick={SearchRequest} size="sm" required>
-        Search
+        {Search}
       </Button>
       <Table responsive>
         <thead>
-          <tr><th>#</th><th>{thead1}</th><th>{thead2}</th><th>{thead3}</th></tr>
+          <tr><th>{theadID}</th><th>{thead1}</th><th>{thead2}</th><th>{thead3}</th></tr>
         </thead>
         <tbody>
           {mappedTable}

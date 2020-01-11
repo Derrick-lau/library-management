@@ -5,7 +5,7 @@ section {
     margin-top: 4vh;
     .table-responsive {
         overflow: auto;
-        height: 50vh;
+        max-height: 50vh;
     }
 }
 

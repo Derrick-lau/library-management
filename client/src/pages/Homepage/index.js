@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import RoutesOnHomepage from '../../components/Menu';
-const Homepage = ({setLogs}) => {
+const Homepage = () => {
     const [routes] = useState
     ([
       { name: 'Books', id: 1, url: 'books'},

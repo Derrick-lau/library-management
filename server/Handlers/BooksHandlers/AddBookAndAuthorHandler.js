@@ -10,7 +10,7 @@ const AddBookHandler = async(req, res) => {
         res.json("Successfully Added");
         writeLogs(`Added book Title: '${title}' , ISBN: ${isbn}, Authors: ${authors}`);
         
-    } catch {console.error; res.status(400).json("Failed to add") };
+    } catch {res.sendStatus(400)};
 }
 
 const AddAuthorHandler = async(authors, book) => {
@@ -22,7 +22,7 @@ const AddAuthorHandler = async(authors, book) => {
             let author = await db.Author.findOrCreate({where:{name: name }});
             await book.addAuthor(author[0]); 
         }
-    } catch {console.error};
+    } catch {res.sendStatus(400)};
 }
 
 module.exports = AddBookHandler;

@@ -9,12 +9,12 @@ import "./index.scss"
 const ModalButton = ({property, color, input1, input2, 
 input0, inputType0, InputPh0, input3, inputType1, inputType2, inputType3, TypeofSelect,
 InputPh1, InputPh2, InputPh3, handleChange, handleSubmit, SelectRequireBool,
-selectDisplay, selectValue1, selectValue2, handleSelectChange
+selectDisplay, selectValue1, selectValue2, handleSelectChange, initialiseState
 }) => {
 
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => {setShow(false); initialiseState()}
+  const handleShow = () => {setShow(true); initialiseState()}
 
   return (
     <>

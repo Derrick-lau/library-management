@@ -1,5 +1,6 @@
 import axios from "axios";
 
+//when componentDidMount LoadToken and stay signed in
 const LoadToken = (setIsSignedIn) => {
     try{
         const token = window.sessionStorage.getItem('token');
