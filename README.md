@@ -4,10 +4,12 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 1. Please runs cw2 - server to make this client work
+
 2. Runs the app in the development mode.
+
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-# `Fuctionalities`
+# Features
 
 ## Sign In：
 
