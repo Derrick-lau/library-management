@@ -7,21 +7,21 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 2. Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### `Fuctionalities`
+# `Fuctionalities`
 
-# Sign In：
+## Sign In：
 
 Sign in with demo account: `barcode: 123456`, `password: 123456`. If login is successful, you will be redirected to the home page.
 After you signed in, a token will be stored on the session storage.
 
-# Navigation bar:
+## Navigation bar:
 If `Home` has been clicked, you will be redirected to the home page.
 If `Sign out` has been clicked, the token will be cleared and you will be redirected to sign in page.
 
-# Home page:
+## Home page:
 There is a menu with 4 directories (Book, User, Loan, Log)
 
-# Book:
+## Book:
 Search Book: Type user`title` and/or Book `authors` and Click Search. The server will then return a list of books that includes requested `title` and/or Book `authors`.
 
 Add book: Type Book `title`, `authors`, `isbn` and submit.
@@ -31,7 +31,7 @@ Delete book: Type Book `BookID` to specify the book, `isbn` and submit.
 BookId can be acquired on the search field.
 if the close button is clicked on Add and Delete modal, you need to re-type in search field to search a book.
 
-# User:
+## User:
 
 Search User: Type User`Username` and/or User`barcode` and Click Search. The server will then return a list of users that includes requested `Username` and/or User`barcode`.
 
@@ -45,7 +45,7 @@ UserId can be acquired on the search field.
 if the close button is clicked on Add, Update and Delete modal, you need to re-type in search field to search a user.
 
 
-# Loan:
+## Loan:
 
 Search the user currently borrowing a book :  Type `BookId` and click Search. The server will then return a User currently borrowing that book.
 
@@ -61,9 +61,8 @@ Delete Loan: Type `LoanId` to specify the Loan and submit.
 ##if the close button is clicked on Add, Update and Delete modal, you need to re-type in search field to search a Loan.
 
 
-# Log:
+## Log:
 
 Search audit logs: Select a `date` and search. The server will then return a list of logs on the date you have selected.
 
-source:https://github.com/Derrick-lau/LMS
 
