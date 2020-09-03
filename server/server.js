@@ -19,6 +19,7 @@ server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
 
 // allow CORS
+console.log("test")
 server.use(cors());
 
 // allow CORS preflight for all routes

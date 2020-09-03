@@ -1,0 +1,19 @@
+version: '3.6'
+
+services: 
+    library-management-server:
+        container_name: backend
+        # image: node:12.18.3
+        build: ./
+        command: npm start
+        ports: 
+            - 3000:5000
+        volumes: # allows to access to docker file system
+            - ./:/usr/src/server
+
+
+# docker-compose up --build # up->all services
+# docker-compose up -d --build # -d background
+# docker-compose run [library-management-api]
+# docker-compose down
+# docker-compose exec [library-management-server] bash
